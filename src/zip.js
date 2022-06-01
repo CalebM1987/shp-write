@@ -1,9 +1,9 @@
-var write = require('./write'),
-    geojson = require('./geojson'),
-    prj = require('./prj'),
-    JSZip = require('jszip');
+import write from './write'
+import geojson from './geojson'
+import prj from './prj'
+import JSZip from 'jszip';
 
-module.exports = function(gj, options) {
+export default function(gj, options) {
 
     var zip = new JSZip(),
         layers;
@@ -48,12 +48,8 @@ module.exports = function(gj, options) {
 
     var generateOptions = { 
         compression:'STORE', 
-        type: (options && options.type) || 'base64'
+        type: 'blob'//(options && options.type) || 'base64'
     };
-
-    if (!process.browser) {
-      generateOptions.type = 'nodebuffer';
-    }
 
     return zip.generateAsync(generateOptions);
 };

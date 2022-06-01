@@ -1,12 +1,13 @@
-var types = require('./types'),
-    dbf = require('dbf'),
-    prj = require('./prj'),
-    ext = require('./extent'),
-    getFields = require('./fields'),
-    assert = require('assert'),
-    pointWriter = require('./points'),
-    multipointWriter = require('./multipoint'),
-    polyWriter = require('./poly');
+import types from './types'
+var offset;
+import dbf from 'dbf'
+import prj from './prj'
+import ext from './extent'
+import getFields from './fields'
+import assert from 'assert'
+import pointWriter from './points'
+import multipointWriter from './multipoint'
+import polyWriter from './poly';
 
 var writers = {
     1: pointWriter,
@@ -19,10 +20,9 @@ var writers = {
     18: multipointWriter
 };
 
-module.exports = write;
 
 // Low-level writing interface
-function write(rows, geometry_type, geometries, callback) {
+export default function write(properties, geometry_type, geometries, callback) {
 
     var TYPE = types.geometries[geometry_type],
         writer = writers[TYPE],
@@ -54,7 +54,7 @@ function write(rows, geometry_type, geometries, callback) {
     // SHX content length - the 50 16-bit words plus 4 times the number of records
     shxView.setInt32(24, (50 + parts * 4));
 
-    var dbfBuf = dbf.structure(rows);
+    var dbfBuf = dbf.structure(properties);
 
     callback(null, {
         shp: shpView,
@@ -80,3 +80,4 @@ function writeExtent(extent, view) {
     view.setFloat64(84, extent.mmin, true);
     view.setFloat64(92, extent.mmax, true);
 }
+

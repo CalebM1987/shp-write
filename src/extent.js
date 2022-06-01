@@ -1,4 +1,4 @@
-module.exports.enlarge = function enlargeExtent(extent, pt) {
+export function enlarge (extent, pt) {
     if (pt[0] < extent.xmin) extent.xmin = pt[0];
     if (pt[0] > extent.xmax) extent.xmax = pt[0];
     if (pt[1] < extent.ymin) extent.ymin = pt[1];
@@ -10,7 +10,7 @@ module.exports.enlarge = function enlargeExtent(extent, pt) {
     return extent;
 };
 
-module.exports.enlargeExtent = function enlargeExtent(extent, ext) {
+export function  enlargeExtent(extent, ext) {
     if (ext.xmax > extent.xmax) extent.xmax = ext.xmax;
     if (ext.xmin < extent.xmin) extent.xmin = ext.xmin;
     if (ext.ymax > extent.ymax) extent.ymax = ext.ymax;
@@ -22,7 +22,7 @@ module.exports.enlargeExtent = function enlargeExtent(extent, ext) {
     return extent;
 };
 
-module.exports.blank = function() {
+export function blank () {
     return {
         xmin: Number.MAX_VALUE,
         ymin: Number.MAX_VALUE,
@@ -34,3 +34,9 @@ module.exports.blank = function() {
         mmax: -Number.MAX_VALUE
     };
 };
+
+export default {
+    enlarge,
+    blank,
+    enlargeExtent
+}

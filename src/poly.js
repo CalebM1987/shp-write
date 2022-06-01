@@ -1,7 +1,7 @@
-var ext = require('./extent'),
-    types = require('./types');
+import ext from './extent'
+import types from './types';
 
-module.exports.write = function writePolyRecord(
+export function write(
     geometries,
     extent,
     shpView,
@@ -111,7 +111,7 @@ module.exports.write = function writePolyRecord(
     }
 };
 
-module.exports.shpLength = function (geometries, TYPE) {
+export function shpLength(geometries, TYPE) {
     var no = 0;
 
     var is3D =
@@ -135,21 +135,20 @@ module.exports.shpLength = function (geometries, TYPE) {
     return no;
 };
 
-module.exports.shxLength = function (geometries) {
+export function shxLength (geometries) {
     return geometries.length * 8;
 };
 
-module.exports.extent = function (coordinates) {
+export function extent(coordinates) {
     return justCoords(coordinates).reduce(function (extent, c) {
         return ext.enlarge(extent, c);
     }, ext.blank());
 };
 
-function parts(geometries, TYPE) {
+export function parts(geometries, TYPE) {
     return geometries.length;
 }
 
-module.exports.parts = parts;
 
 function totalPoints(geometries) {
     var sum = 0;
@@ -171,4 +170,12 @@ function justCoords(coords, l) {
     }
 }
 
-module.exports.justCoords = justCoords;
+
+export default {
+    write,
+    parts,
+    extent,
+    shxLength,
+    shpLength,
+    justCoords
+}

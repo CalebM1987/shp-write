@@ -1,9 +1,11 @@
-var types = require('./types').jstypes;
+import types from './types';
 
-module.exports.geojson = geojson;
-module.exports.obj = obj;
+export default {
+    geojson,
+    obj
+}
 
-function geojson(features) {
+export function geojson(features) {
     var fields = {};
     features.forEach(collect);
     function collect(f) { inherit(fields, f.properties); }
@@ -15,7 +17,7 @@ function inherit(a, b) {
     return a;
 }
 
-function obj(_) {
+export function obj(_) {
     var fields = {}, o = [];
     for (var p in _) fields[p] = typeof _[p];
     for (var n in fields) {

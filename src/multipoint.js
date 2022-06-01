@@ -1,7 +1,7 @@
-var ext = require("./extent");
-var types = require("./types");
+import ext from "./extent";
+import types from "./types";
 
-module.exports.write = function writePoints(
+export function write(
   coordinates,
   extent,
   shpView,
@@ -97,24 +97,24 @@ module.exports.write = function writePoints(
   }
 };
 
-module.exports.extent = function (coordinates) {
+export function extent(coordinates) {
   var flattened = justCoords(coordinates);
   return flattened.reduce(function (extent, coords) {
     return ext.enlarge(extent, coords);
   }, ext.blank());
 };
 
-module.exports.parts = function parts(geometries, TYPE) {
+export function parts(geometries, TYPE) {
   return geometries.length;
 };
 
-module.exports.shxLength = function (coordinates) {
+export function shxLength(coordinates) {
   return coordinates.length * 8;
 };
 
 // coordinates.length: number of records
 // flattened.length: total number of points in all records
-module.exports.shpLength = function (coordinates, TYPE) {
+export function shpLength(coordinates, TYPE) {
   var flattened = justCoords(coordinates);
   var length = coordinates.length * 48 + flattened.length * 16;
 
@@ -130,4 +130,12 @@ function justCoords(coords) {
   return coords.reduce(function (agg, c) {
     return agg.concat(c);
   }, points);
+}
+
+export default {
+  write,
+  parts,
+  extent,
+  shxLength,
+  shpLength
 }

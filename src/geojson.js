@@ -1,13 +1,26 @@
-module.exports.point = justType('Point', 'POINT', false);
-module.exports.pointZ = justType('Point', 'POINTZ', true);
-module.exports.multipoint = justType('MultiPoint', 'MULTIPOINT', false);
-module.exports.multipointZ = justType('MultiPoint', 'MULTIPOINTZ', true);
-module.exports.line = justType('LineString', 'POLYLINE', false);
-module.exports.lineZ = justType('LineString', 'POLYLINEZ', true);
-module.exports.multiline = justType('MultiLineString', 'POLYLINE', false);
-module.exports.multilineZ = justType('MultiLineString', 'POLYLINEZ', true);
-module.exports.polygon = justType('Polygon', 'POLYGON', false);
-module.exports.polygonZ = justType('Polygon', 'POLYGONZ', true);
+export const point = justType('Point', 'POINT', false)
+export const pointZ = justType('Point', 'POINTZ', true)
+export const multipoint = justType('MultiPoint', 'MULTIPOINT', false)
+export const multipointZ = justType('MultiPoint', 'MULTIPOINTZ', true)
+export const line = justType('LineString', 'POLYLINE', false)
+export const lineZ = justType('LineString', 'POLYLINEZ', true)
+export const multiline = justType('MultiLineString', 'POLYLINE', false)
+export const multilineZ = justType('MultiLineString', 'POLYLINEZ', true)
+export const polygon = justType('Polygon', 'POLYGON', false)
+export const polygonZ = justType('Polygon', 'POLYGONZ', true);
+
+export default {
+    point,
+    pointZ,
+    multipoint,
+    multipointZ,
+    line,
+    lineZ,
+    multiline,
+    multilineZ,
+    polygon,
+    polygonZ
+}
 
 // type - geojson geometry type
 // TYPE - SHP geometry type

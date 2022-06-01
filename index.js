@@ -1,3 +1,9 @@
-module.exports.download = require('./src/download')
-module.exports.write = require('./src/write')
-module.exports.zip = require('./src/zip')
+import download from './src/download'
+import write from './src/write'
+import zip from './src/zip'
+
+export default {
+  download,
+  zip,
+  write
+}

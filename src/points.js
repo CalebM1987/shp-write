@@ -1,7 +1,7 @@
-var ext = require('./extent');
-var types = require('./types');
+import ext from './extent';
+import types from './types';
 
-module.exports.write = function writePoints(coordinates, extent, shpView, shxView, TYPE) {
+export function write(coordinates, extent, shpView, shxView, TYPE) {
 
     var is3D = TYPE === types.geometries.POINTZ;
     var contentLength = is3D ? 36 : 20, // 20 for non-3D or 36 for 3D
@@ -36,20 +36,28 @@ module.exports.write = function writePoints(coordinates, extent, shpView, shxVie
     });
 };
 
-module.exports.extent = function(coordinates) {
+export function extent(coordinates) {
     return coordinates.reduce(function(extent, coords) {
         return ext.enlarge(extent, coords);
     }, ext.blank());
 };
 
-module.exports.parts = function parts(geometries, TYPE) {
+export function parts(geometries, TYPE) {
     return geometries.length;
 };
 
-module.exports.shxLength = function(coordinates) {
+export function shxLength(coordinates) {
     return coordinates.length * 8;
 };
 
-module.exports.shpLength = function(coordinates, TYPE) {
+export function shpLength(coordinates, TYPE) {
     return coordinates.length * (TYPE === types.geometries.POINTZ ? 44 : 28);
 };
+
+export default {
+    write,
+    parts,
+    extent,
+    shxLength,
+    shpLength
+}

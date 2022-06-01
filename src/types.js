@@ -1,4 +1,4 @@
-module.exports.geometries = {
+export const geometries = {
     NULL: 0,
     POINT: 1,
     POLYLINE: 3,
@@ -14,3 +14,5 @@ module.exports.geometries = {
     MULTIPOINTM: 28,
     MULTIPATCH: 31,
 };
+
+export default { geometries }
