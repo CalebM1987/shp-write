@@ -2,11 +2,14 @@
   "name": "@crmackey/shp-write",
   "version": "0.4.0",
   "description": "write shapefiles from pure javascript",
-  "main": "index.js",
+  "main": "lib/shpwriter.cjs.js",
+  "module": "lib/shpwriter.esm.js",
   "types": "index.d.ts",
   "scripts": {
     "test": "mocha -R spec",
-    "publish": "npm publish --access public"
+    "clean": "rm -rf lib",
+    "publish": "npm publish --access public",
+    "build": "npm run clean && rollup -c"
   },
   "repository": {
     "type": "git",
@@ -43,14 +46,29 @@
   },
   "dependencies": {
     "dbf": "0.1.4",
+    "file-saver": "^1.3.8",
     "jszip": "^3.2.2"
   },
+  "exports": {
+    "require": "./lib/cjs/index.js",
+    "import": "./lib/esm/index.js"
+  },
   "devDependencies": {
+    "@babel/preset-env": "^7.18.2",
+    "@rollup/plugin-babel": "^5.3.1",
+    "@rollup/plugin-commonjs": "^22.0.0",
+    "@rollup/plugin-node-resolve": "^13.3.0",
+    "@rollup/plugin-replace": "^4.0.0",
+    "@types/geojson": "^7946.0.8",
     "browserify": "^13.0.0",
     "cz-conventional-changelog": "^1.2.0",
     "expect.js": "~0.3.1",
-    "@types/geojson": "^7946.0.8",
-    "mocha": "~2.4.5"
+    "mocha": "~2.4.5",
+    "rollup-plugin-babel": "^4.4.0",
+    "rollup-plugin-commonjs": "^10.1.0",
+    "rollup-plugin-node-resolve": "^5.2.0",
+    "rollup-plugin-polyfill-node": "^0.9.0",
+    "rollup-plugin-terser": "^7.0.2"
   },
   "config": {
     "commitizen": {
