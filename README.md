@@ -1,5 +1,7 @@
 # shp-write
 
+This repository is based on a [fork](https://github.com/Esri/shp-write) from the original [repo](https://github.com/mapbox/shp-write) that has been updated to work better as an esm module.
+
 Writes shapefile in pure javascript. Uses [dbf](https://github.com/tmcw/dbf)
 for the data component, and [jsZIP](http://stuk.github.io/jszip/) to generate
 ZIP file downloads in-browser.
