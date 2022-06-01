@@ -1,10 +1,9 @@
+// fix for undefined "offset" in "dbf" package
+window ? window.offset = undefined: null
+globalThis ? globalThis.offset = undefined: null
 import types from './types'
-var offset;
 import dbf from 'dbf'
 import prj from './prj'
-import ext from './extent'
-import getFields from './fields'
-import assert from 'assert'
 import pointWriter from './points'
 import multipointWriter from './multipoint'
 import polyWriter from './poly';
