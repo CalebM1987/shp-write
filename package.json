@@ -1,12 +1,12 @@
 {
-  "name": "shp-write",
-  "version": "0.3.3",
+  "name": "@crmackey/shp-write",
+  "version": "0.4.0",
   "description": "write shapefiles from pure javascript",
   "main": "index.js",
+  "types": "index.d.ts",
   "scripts": {
     "test": "mocha -R spec",
-    "prepublish": "npm run make",
-    "make": "browserify -s shpwrite ./ > shpwrite.js"
+    "publish": "npm publish --access public"
   },
   "repository": {
     "type": "git",
@@ -31,11 +31,15 @@
     {
       "name": "Ryan Sims",
       "email": "dulldrums09@gmail.com"
+    },
+    {
+      "name": "Caleb Mackey",
+      "email": "caleb.mackey@gmail.com"
     }
   ],
   "license": "BSD-2-Clause",
   "bugs": {
-    "url": "https://github.com/Esri/shp-write/issues"
+    "url": "https://github.com/CalebM1987/shp-write/issues"
   },
   "dependencies": {
     "dbf": "0.1.4",
@@ -45,6 +49,7 @@
     "browserify": "^13.0.0",
     "cz-conventional-changelog": "^1.2.0",
     "expect.js": "~0.3.1",
+    "@types/geojson": "^7946.0.8",
     "mocha": "~2.4.5"
   },
   "config": {
