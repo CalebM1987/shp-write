@@ -2,7 +2,7 @@
   "name": "@crmackey/shp-write",
   "version": "0.4.0",
   "description": "write shapefiles from pure javascript",
-  "main": "./lib/shpwriter.umd.js",
+  "main": "./lib/shpwriter.cjs.js",
   "module": "./lib/shpwriter.esm.js",
   "types": "index.d.ts",
   "scripts": {
@@ -18,7 +18,8 @@
   "files": [
     "index.js",
     "src",
-    "shpwrite.js"
+    "index.d.ts",
+    "lib"
   ],
   "keywords": [
     "shapefile",
