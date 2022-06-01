@@ -2,18 +2,18 @@
   "name": "@crmackey/shp-write",
   "version": "0.4.0",
   "description": "write shapefiles from pure javascript",
-  "main": "lib/shpwriter.cjs.js",
-  "module": "lib/shpwriter.esm.js",
+  "main": "./lib/shpwriter.umd.js",
+  "module": "./lib/shpwriter.esm.js",
   "types": "index.d.ts",
   "scripts": {
-    "test": "mocha -R spec",
+    "test": "jest --verbose",
     "clean": "rm -rf lib",
     "publish": "npm publish --access public",
     "build": "npm run clean && rollup -c"
   },
   "repository": {
     "type": "git",
-    "url": "git://github.com/Esri/shp-write.git"
+    "url": "git://github.com/CalebM1987/shp-write.git"
   },
   "files": [
     "index.js",
@@ -50,8 +50,8 @@
     "jszip": "^3.2.2"
   },
   "exports": {
-    "require": "./lib/cjs/index.js",
-    "import": "./lib/esm/index.js"
+    "require": "./lib/shpwriter.cjs.js",
+    "import": "./lib/shpwriter.esm.js"
   },
   "devDependencies": {
     "@babel/preset-env": "^7.18.2",
@@ -60,9 +60,11 @@
     "@rollup/plugin-node-resolve": "^13.3.0",
     "@rollup/plugin-replace": "^4.0.0",
     "@types/geojson": "^7946.0.8",
+    "@types/jest": "^27.5.2",
     "browserify": "^13.0.0",
     "cz-conventional-changelog": "^1.2.0",
     "expect.js": "~0.3.1",
+    "jest": "^28.1.0",
     "mocha": "~2.4.5",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",

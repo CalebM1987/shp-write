@@ -11,25 +11,25 @@ export default  {
   input: 'index.js',
   output: [
     {
-      file: 'lib/bundles/shpwriter.esm.js',
+      file: 'lib/shpwriter.esm.js',
       format: 'esm',
     },
-    // {
-    //   file: 'lib/bundles/shpwriter.cjs.js',
-    //   format: 'cjs',
-    // },
     {
-      file: 'lib/bundles/shpwriter.esm.min.js',
+      file: 'lib/shpwriter.cjs.js',
+      format: 'cjs',
+    },
+    {
+      file: 'lib/shpwriter.esm.min.js',
       format: 'esm',
       plugins: [terser()],
     },
     {
-      file: 'lib/bundles/shpwriter.umd.js',
+      file: 'lib/shpwriter.umd.js',
       format: 'umd',
       name: 'shpwriter',
     },
     {
-      file: 'lib/bundles/shpwriter.umd.min.js',
+      file: 'lib/shpwriter.umd.min.js',
       format: 'umd',
       name: 'shpwriter',
       plugins: [terser()],
