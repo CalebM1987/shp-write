@@ -4,7 +4,7 @@
   "description": "write shapefiles from pure javascript",
   "main": "./lib/shpwriter.cjs.js",
   "module": "./lib/shpwriter.esm.js",
-  "types": "index.d.ts",
+  "types": "./index.d.ts",
   "scripts": {
     "test": "jest --verbose",
     "clean": "rm -rf lib",
