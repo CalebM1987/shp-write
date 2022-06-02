@@ -30,7 +30,9 @@ type ShpWriterCallback = (err: Error, files: ShpFiles) => void;
 
 type GeometryTypeID = 0 | 1 | 3 | 5 | 8 | 11 | 13 | 15 | 18 | 21 | 23 | 25 | 28 | 31;
 
-export function download(gj: GeoJSON, options: WriterOptions): Promise<boolean>;
-export function zip<Blob>(gj: GeoJSON, options: WriterOptions): Promise<Blob>;
+
+export function download(gj: GeoJSON, options?: string | WriterOptions): Promise<boolean>;
+export function zip<Blob>(gj: GeoJSON, options?: string | WriterOptions): Promise<Blob>;
+
 export function write(properties: Record<string, any>, geometry_type: GeometryTypeID, geometries: Geometry[], callback: ShpWriterCallback): void;
 export as namespace shpwrite;
