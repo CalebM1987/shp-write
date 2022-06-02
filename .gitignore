@@ -4,6 +4,8 @@ node_modules
 yarn.lock
 lib
 
+nodetest.js
+
 *.shp
 *.shx
 *.dbf
