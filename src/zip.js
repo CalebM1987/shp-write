@@ -1,55 +1,56 @@
-import write from './write'
-import geojson from './geojson'
-import prj from './prj'
-import JSZip from 'jszip';
+import write from "./write";
+import geojson from "./geojson";
+import prj from "./prj";
+import { zipSync, strToU8 } from "fflate";
+import { getWriteOptions } from "./utils";
 
-export default function(gj, options) {
+export default async function (gj, options) {
+  options = getWriteOptions(options);
+  const arrBuff = [];
+  const geoms = [
+    geojson.point(gj),
+    geojson.multipoint(gj),
+    geojson.line(gj),
+    geojson.multiline(gj),
+    geojson.polygon(gj),
+    geojson.pointZ(gj),
+    geojson.multipointZ(gj),
+    geojson.lineZ(gj),
+    geojson.multilineZ(gj),
+    geojson.polygonZ(gj),
+  ];
 
-    var zip = new JSZip(),
-        layers;
+  geoms.forEach(function (l) {
+    if (l.geometries.length && l.geometries[0].length) {
+      write(
+        // field definitions
+        l.properties,
+        // geometry type
+        l.type,
+        // geometries
+        l.geometries,
+        function (err, files) {
+          var fileName =
+            options && options.types[l.type.toLowerCase()]
+              ? options.types[l.type.toLowerCase()]
+              : l.type;
+          arrBuff.push(
+            zipSync({
+              [fileName + ".shp"]: new Uint8Array(files.shp.buffer),
+              [fileName + ".shx"]: new Uint8Array(files.shx.buffer),
+              [fileName + ".dbf"]: new Uint8Array(files.dbf.buffer),
+              [fileName + ".prj"]: strToU8(options.wkt ?? prj),
+            })
+          );
 
-    // if options.folder is set, zip to a folder with that name
-    if (options && options.folder && typeof options.folder === 'string') {
-        layers = zip.folder(options.folder);
-    } else {
-        layers = zip;
-    }
-    
-    [
-        geojson.point(gj),
-        geojson.multipoint(gj),
-        geojson.line(gj),
-        geojson.multiline(gj),
-        geojson.polygon(gj),
-        geojson.pointZ(gj),
-        geojson.multipointZ(gj),
-        geojson.lineZ(gj),
-        geojson.multilineZ(gj),
-        geojson.polygonZ(gj)
-    ]
-        .forEach(function(l) {
-        if (l.geometries.length && l.geometries[0].length) { 
-            write(
-                // field definitions
-                l.properties,
-                // geometry type
-                l.type,
-                // geometries
-                l.geometries,
-                function(err, files) {
-                    var fileName = options && options.types[l.type.toLowerCase()] ? options.types[l.type.toLowerCase()] : l.type;
-                    layers.file(fileName + '.shp', files.shp.buffer, { binary: true });
-                    layers.file(fileName + '.shx', files.shx.buffer, { binary: true });
-                    layers.file(fileName + '.dbf', files.dbf.buffer, { binary: true });
-                    layers.file(fileName + '.prj', options.wkt || prj);
-                });
+          if (err) {
+            console.warn("failed to create zip file: ", err);
+          }
         }
-    });
+      );
+    }
+  });
 
-    var generateOptions = { 
-        compression:'STORE', 
-        type: 'blob'//(options && options.type) || 'base64'
-    };
-
-    return zip.generateAsync(generateOptions);
-};
+  // return zip file as blob
+  return new Blob(arrBuff);
+}
