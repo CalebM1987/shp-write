@@ -2,6 +2,15 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.3](https://github.com/CalebM1987/shp-write/compare/v0.4.2...v0.4.3) (2022-06-02)
+
+
+### Features
+
+* add default options for writing shapefile ([2408c44](https://github.com/CalebM1987/shp-write/commit/2408c44abe0bc4e4d17a537db22318ffc6ab06c2))
+* use named exports ([82cd7c2](https://github.com/CalebM1987/shp-write/commit/82cd7c2f4c96704e1a13dfe0c4cdee67328e866f))
+* **zip:** use fflate instead of jszip ([fe959b3](https://github.com/CalebM1987/shp-write/commit/fe959b3de7cb12fb7e46342e091038708a89deee))
+
 ### [0.4.2](https://github.com/CalebM1987/shp-write/compare/v0.4.1...v0.4.2) (2022-06-02)
 
 ### [0.4.1](https://github.com/CalebM1987/shp-write/compare/v0.4.0...v0.4.1) (2022-06-01)
