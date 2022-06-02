@@ -2,6 +2,13 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.4.4](https://github.com/CalebM1987/shp-write/compare/v0.4.3...v0.4.4) (2022-06-02)
+
+
+### Bug Fixes
+
+* **package.json:** fixed path to typings ([03c2dd6](https://github.com/CalebM1987/shp-write/commit/03c2dd6ad93b055394236954665223391a064469))
+
 ### [0.4.3](https://github.com/CalebM1987/shp-write/compare/v0.4.2...v0.4.3) (2022-06-02)
 
 

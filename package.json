@@ -1,6 +1,6 @@
 {
   "name": "@crmackey/shp-write",
-  "version": "0.4.3",
+  "version": "0.4.4",
   "description": "write shapefiles from pure javascript",
   "main": "./lib/shpwriter.cjs.js",
   "module": "./lib/shpwriter.esm.js",
