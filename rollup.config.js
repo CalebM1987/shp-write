@@ -3,7 +3,6 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import replace from '@rollup/plugin-replace'
 import { terser } from "rollup-plugin-terser";
-import nodePolyfills from 'rollup-plugin-polyfill-node';
 
 const extensions = ['.js', '.ts' ];
 
@@ -36,9 +35,9 @@ export default  {
     }
   ],
   plugins: [
-    nodePolyfills(),
     replace({
-      "process.env.NODE_ENV": JSON.stringify("development")
+      "process.env.NODE_ENV": JSON.stringify("development"),
+      preventAssignment: true
     }),
     resolve({ extensions, browser: true }),
     commonjs(),//{ namedExports: { 'file-saver': [ 'saveAs' ] } }

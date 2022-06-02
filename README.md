@@ -127,3 +127,4 @@ The idea here is to provide a comprehensive list of geojson featureCollections t
 
 * Nick Baugh <niftylettuce@gmail.com>
 * Ryan Sims <dulldrums09@gmail.com>
+* Caleb Mackey <caleb.mackey@gmail.com>
