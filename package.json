@@ -69,7 +69,7 @@
     "express": "^4.18.1",
     "jest": "^28.1.0",
     "mocha": "~2.4.5",
-    "opn": "^6.0.0",
+    "open": "^8.4.0",
     "path": "^0.12.7",
     "rollup-plugin-babel": "^4.4.0",
     "rollup-plugin-commonjs": "^10.1.0",
