@@ -40,7 +40,7 @@ export default  {
     replace({
       "process.env.NODE_ENV": JSON.stringify("development")
     }),
-    resolve({ extensions }),
+    resolve({ extensions, browser: true }),
     commonjs(),//{ namedExports: { 'file-saver': [ 'saveAs' ] } }
     babel({ babelHelpers: 'bundled', include: ['src/**/*.js'], extensions, exclude: 'node_modules/**'})
   ]
