@@ -1,38 +1,40 @@
 # shp-write
 
-This repository is based on a [fork](https://github.com/Esri/shp-write) from the original [repo](https://github.com/mapbox/shp-write) that has been updated to work better as an esm module.
+This repository is based on a [fork](https://github.com/Esri/shp-write) from the original [repo](https://github.com/mapbox/shp-write) that has been updated to work better as an esm module and includes typings.
 
 Writes shapefile in pure javascript. Uses [dbf](https://github.com/tmcw/dbf)
-for the data component, and [jsZIP](http://stuk.github.io/jszip/) to generate
+for the data component, and [fflate](https://github.com/101arrowz/fflate) to generate
 ZIP file downloads in-browser.
 
-## Usage
+## Installing
 
-For node.js or [browserify](https://github.com/substack/node-browserify)
-
-    npm install --save shp-write
-
-Or in a browser
-
-    https://unpkg.com/shp-write@latest/shpwrite.js
+    npm install --save @crmackey/shp-write
 
 ## Caveats
 
-* Requires a capable fancy modern browser with [Typed Arrays](http://caniuse.com/#feat=typedarrays)
+* Requires a modern browser with [Typed Arrays](http://caniuse.com/#feat=typedarrays)
   support
 * Supported Geojson Geometries: Point, LineString, MultiLineString, MultiPoint, Polygon
 * Unsupported Geojson Geometries: MultiPolygon
 * Tabular-style properties export with Shapefile's field name length limit
-* Uses jsZip for ZIP files, but [compression is buggy](https://github.com/Stuk/jszip/issues/53) so it uses STORE instead of DEFLATE.
+* Uses [fflate](https://www.npmjs.com/package/fflate) for zip `DEFLATE` compression.
 
 ## Example
 
 ```js
-var shpwrite = require('shp-write');
+import { download } from '@crmackey/shp-write'
 
 // (optional) set names for feature types and zipped folder
 var options = {
+    /** zip file name, id you only pass this
+    * the shapefile will also receive this name
+    */
+    name: 'ZippedShapefile',
+    /** optional nested folder */
     folder: 'myshapes',
+    /** optional explicit names for shapefiles generated 
+    * for each type of geometry (applicable when mixed geometries are present)
+    */
     types: {
         point: 'mypoints',
         polygon: 'mypolygons',
@@ -40,7 +42,7 @@ var options = {
     }
 }
 // a GeoJSON bridge for features
-shpwrite.download({
+download({
     type: 'FeatureCollection',
     features: [
         {
@@ -70,7 +72,7 @@ shpwrite.download({
 
 ## API
 
-### `download(geojson)`
+### `download(geojson, options)`
 
 Given a [GeoJSON](http://geojson.org/) FeatureCollection as an object,
 converts convertible features into Shapefiles and triggers a download.
@@ -89,10 +91,32 @@ arrays, generate a shapefile and call the callback with `err` and an object with
 }
 ```
 
-### `zip(geojson)`
+### `zip(geojson, options)`
 
-Generate a ArrayBuffer of a zipped shapefile, dbf, and prj, from a GeoJSON
+Generate an [Blob](https://developer.mozilla.org/en-US/docs/Web/API/Blob) of a zipped shapefile, dbf, and prj, from a GeoJSON
 object.
+
+### zip and download options
+
+These are the available options that can be passed into the `zip` and `download` functions:
+
+```ts
+interface WriterOptions {
+  /** the zipfile name for the contained shapefile */
+  name?: string;
+  /** the names of the shapefile for each geometry type */
+  types?: {
+    /** the name for the point features shapefile if applicable */
+    point: string;
+    /** the name for the polygon features shapefile if applicable */
+    polygon: string;
+    /** the name for the line features shapefile if applicable */
+    line: string;
+};
+  /** optional subfolder within zipfile that will contain the shapefile(s) */
+  folder?: string;
+}
+```
 
 ## Testing
 
