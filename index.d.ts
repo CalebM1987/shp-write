@@ -3,18 +3,32 @@ import { GeoJSON, Geometry } from 'geojson'
 
 interface GeometryTypeNames {
   /** the name for the point features shapefile if applicable */
-  point: string;
+  point?: string;
+  /** the name for the point features shapefile if applicable */
+  pointz?: string;
+  /** the name for the multipoint features shapefile if applicable */
+  multipoint?: string;
+  /** the name for the multipointz features shapefile if applicable */
+  multipointz?: string;
   /** the name for the polygon features shapefile if applicable */
-  polygon: string;
-  /** the name for the line features shapefile if applicable */
-  line: string;
+  polygon?: string;
+  /** the name for the polygon features shapefile if applicable */
+  polygonz?: string;
+  /** the name for the line features shapefile if applicable (alias for polyline) */
+  line?: string;
+  /** the name for the linez features shapefile if applicable (alias for polylinez) */
+  linez?: string;
+  /** the name for the polylinez features shapefile if applicable */
+  polyline?: string;
+  /** the name for the polylinez features shapefile if applicable */
+  polylinez?: string;
 }
 
 interface WriterOptions {
   /** the zipfile name for the contained shapefile */
   name?: string;
   /** the names of the shapefile for each geometry type */
-  types: GeometryTypeNames;
+  types?: GeometryTypeNames;
   /** optional subfolder within zipfile that will contain the shapefile(s) */
   folder?: string;
 }
