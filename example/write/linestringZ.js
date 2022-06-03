@@ -1,4 +1,4 @@
-var write = require('../src/write'),
+var write = require('../../lib/shpwriter.cjs').write,
     fs = require('fs');
 
 var lines = [[[

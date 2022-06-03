@@ -2,7 +2,9 @@
 node example/zip/zip.js
 */
 // this could be simplified
-var zip = require('../../src/zip'),
+const Blob = require('buffer').Blob;
+typeof globalThis !== 'undefined' ? globalThis.Blob = Blob: null;
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var zipOptions = {
@@ -18,8 +20,10 @@ var zipOptions = {
 
 // utility
 function geojsonZipHelper(geojson, fileName) {
-    zip(geojson, zipOptions).then((base64String) => {
-        fs.writeFile(fileName, base64String, { encoding: 'base64' }, function (
+    zip(geojson, zipOptions).then(async (blob) => {
+        const buf = await blob.arrayBuffer()
+        const data = new Uint8Array(buf)
+        fs.createWriteStream(fileName).write(data, function (
             err,
         ) {
             if (err) {
@@ -28,6 +32,7 @@ function geojsonZipHelper(geojson, fileName) {
                 console.log(`${fileName} created`);
             }
         });
+        
     });
 }
 

@@ -1,7 +1,7 @@
 /*
 node example/zip/multiplePolygon.js
 */
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var multiPolygonGeojson = require('../../test/geojson/MultiPolygon-2d-single.json');

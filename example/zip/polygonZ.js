@@ -1,7 +1,7 @@
 /*
 node example/zip/polygonZ.js
 */
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var polygonZGeojson = require('../../test/geojson/Polygon-3d-single.json');

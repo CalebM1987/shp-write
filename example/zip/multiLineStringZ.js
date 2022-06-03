@@ -2,7 +2,7 @@
 node example/zip/multiLineStringZ.js
 */
 // ! broken
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var multiLineStringZGeojson = require('../../test/geojson/MultiLineString-3d-single.json');

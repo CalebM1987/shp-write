@@ -1,4 +1,4 @@
-var write = require('../src/write'),
+var write = require('../../lib/shpwriter.cjs').write,
     fs = require('fs');
 
 var points = [
@@ -20,14 +20,17 @@ write(
     points,
     finish);
 
+
+
 function finish(err, files) {
     fs.writeFileSync('points.shp', toBuffer(files.shp.buffer));
     fs.writeFileSync('points.shx', toBuffer(files.shx.buffer));
     fs.writeFileSync('points.dbf', toBuffer(files.dbf.buffer));
+    console.log('wrote files to buffers')
 }
 
-function toBuffer(ab) {
-    var buffer = new Buffer(ab.byteLength),
+function toBuffer(ab, i) {
+    var buffer = Buffer.alloc(ab.byteLength),
         view = new Uint8Array(ab);
     for (var i = 0; i < buffer.length; ++i) { buffer[i] = view[i]; }
     return buffer;

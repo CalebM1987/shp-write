@@ -52,5 +52,5 @@ export default async function (gj, options) {
   });
 
   // return zip file as blob
-  return new Blob(arrBuff);
+  return new Blob(arrBuff, { type: 'application/zip', filename: options.name });
 }

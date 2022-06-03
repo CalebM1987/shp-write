@@ -1,7 +1,7 @@
 /*
 node example/zip/multiPoint.js
 */
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var multiPointGeojson = require('../../test/geojson/MultiPoint-2d-multiple.json');

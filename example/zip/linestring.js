@@ -1,7 +1,7 @@
 /*
 node example/zip/linestring.js
 */
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
   fs = require('fs');
 
 var linestringGeojson = require('../../test/geojson/LineString-2d-single.json');

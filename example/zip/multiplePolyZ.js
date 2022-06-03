@@ -2,7 +2,7 @@
 node example/zip/multiplePolyZ.js
 */
 // ! broken
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var multiPolygonZGeojson = require('../../test/geojson/MultiPolygon-3d-single.json');

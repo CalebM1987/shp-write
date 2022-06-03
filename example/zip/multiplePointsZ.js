@@ -1,7 +1,7 @@
 /*
 node example/zip/multiplePointZ.js
 */
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var pointZGeojson = require('../../test/geojson/Point-3d-multiple.json');

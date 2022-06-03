@@ -1,7 +1,7 @@
 /*
 node example/zip/multiLineString.js
 */
-var zip = require('../../src/zip'),
+var zip = require('../../lib/shpwriter.cjs').zip,
     fs = require('fs');
 
 var multiLineStringGeojson = require('../../test/geojson/MultiLineString-2d-single.json');

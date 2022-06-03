@@ -9,8 +9,9 @@ export function write(
   TYPE
 ) {
   var shpI = 0,
-    shxI = 0;
-  (shxOffset = 100), (is3D = TYPE === types.geometries.MULTIPOINTZ);
+    shxI = 0,
+    shxOffset = 100,
+    is3D = TYPE === types.geometries.MULTIPOINTZ;
 
   coordinates.forEach(writeMultipoint);
 

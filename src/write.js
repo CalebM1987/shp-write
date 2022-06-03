@@ -1,6 +1,6 @@
 // fix for undefined "offset" in "dbf" package
-window ? window.offset = undefined: null
-globalThis ? globalThis.offset = undefined: null
+typeof window === 'undefined' ? null: window.offset = undefined;
+typeof globalThis === 'undefined' ? null: globalThis.offset = undefined;
 import types from './types'
 import dbf from 'dbf'
 import prj from './prj'
